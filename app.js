@@ -191,8 +191,9 @@ app.post('/empdelete',(req,res)=>{
     var item = req.body.ename;
 
     request(APIurl3+"/?ename="+item,(error,response,body)=>{
-        //res.render("viewemployee","<script>alert('Employee Deleted')</script>");
-        res.send("<script>alert('Employee Deleted')</script>");
+
+        res.send("<script>alert('Employee Deleted')</script><script>window.location.href='/deleteemployee'</script>");
+
     })
 });
 
