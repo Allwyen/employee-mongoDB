@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Connect to a mongodb called employeedb
 
-Mongoose.connect("mongodb://localhost:27017/employeedb");
+Mongoose.connect("mongodb+srv://mongodb:mongodb@mycluster-ucvz5.mongodb.net/employeedb?retryWrites=true&w=majority");
 
 //Creating a schema using collection name employeedetail
 
