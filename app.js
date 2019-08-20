@@ -1,17 +1,29 @@
+/*this section is adding the npm libraries to nodejs */
+
 const Express = require("express");
 const Mongoose = require('mongoose');
 
 var request = require('request');
 var bodyParser = require('body-parser');
 
+//Now creating a object for class Express called app
+
 var app = new Express();
 
+//Adding a middleware.EJS template engine
+
 app.set('view engine','ejs'); 
+
+//For parsing a req.body we need body-parser. below code is that
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+//Connect to a mongodb called employeedb
+
 Mongoose.connect("mongodb://localhost:27017/employeedb");
+
+//Creating a schema using collection name employeedetail
 
 const EmployeeModel= Mongoose.model("employeedetail",{
     ename:String,
@@ -19,13 +31,19 @@ const EmployeeModel= Mongoose.model("employeedetail",{
     esalary:String
 });
 
+//creating a route named index for  Our Homepage
+
 app.get('/',(req,res)=>{
     res.render('index');
 })
 
+//creating a route named addemployee
+
 app.get('/addemployee',(req,res)=>{
     res.render('addemployee');
 }); 
+
+//this is a API(Name of API is '/read') for inserting data towards the database employeedb
 
 app.post('/read',(req,res)=>{
     //var items=req.body;
@@ -46,6 +64,8 @@ app.post('/read',(req,res)=>{
 
 });
 
+//this is an API to retrieve values from the database employeedb
+
 app.get('/employeeall',(req,res)=>{
 
     var result = EmployeeModel.find((error,data)=>{
@@ -61,6 +81,16 @@ app.get('/employeeall',(req,res)=>{
     });
 });
 
+/* 
+    STEPS FOR BELOW CODE
+
+    1) --> Below code says that a route '/viewemployee' is created. 
+    2) --> Then a request is gone to APIurl.
+    3) --> Now the APIurl(Name of API is '/employeeall') runs its own code. 
+    4) --> Afterwards from the APIurl data is parsed to JSON.
+    5) --> Now this parsed JSON data is displayed on to our webpage.
+*/
+
 const APIurl = "http://localhost:3456/employeeall";
 
 app.get('/viewemployee',(req,res)=>{
@@ -71,9 +101,13 @@ app.get('/viewemployee',(req,res)=>{
     });
 });
 
+//A route set for page searchemployee
+
 app.get('/searchemployee',(req,res)=>{
     res.render('searchemployee');
 });
+
+// A route named '/employeename' to fetch a single employee detail
 
 app.get('/employeename',(req,res)=>{
     var item = req.query.ename;
@@ -94,6 +128,16 @@ app.get('/employeename',(req,res)=>{
     })
 
 });
+
+/* 
+    STEPS FOR BELOW CODE
+
+    1) --> Below code says that a route '/viewsingleemployee' is created. 
+    2) --> Then a request is gone to APIurl.
+    3) --> Now the APIurl(Name of API is '/employeename') runs its own code. 
+    4) --> Afterwards from the APIurl data is parsed to JSON.
+    5) --> Now this parsed JSON data is displayed on to our webpage.
+*/
 
 const APIurl2 = "http://localhost:3456/employeename";
 
