@@ -151,6 +151,53 @@ app.post('/viewsingleemployee',(req,res)=>{
     })
 });
 
+//A route for page deleteemployee
+
+app.get('/deleteemployee',(req,res)=>{
+    res.render('deleteemployee');
+});
+
+//An API to delete employee
+
+app.get('/deleteAPI',(req,res)=>{
+    var item= req.query.ename;
+
+    var result = EmployeeModel.deleteOne({ename:item},(error,data)=>{
+        if(error)
+        {
+            throw error;
+            res.send(error);
+        }
+        else
+        {
+            res.send(data);
+        }
+    })
+})
+
+/* 
+    STEPS FOR BELOW CODE
+
+    1) --> Below code says that a route '/empdelete' is created. 
+    2) --> Then a request is gone to APIurl.
+    3) --> Now the APIurl(Name of API is '/deleteAPI') runs its own code. 
+    4) --> Afterwards from the APIurl data is parsed to JSON.
+    5) --> Now this parsed JSON data is displayed on to our webpage.
+*/
+
+const APIurl3 = "http://localhost:3456/deleteAPI"
+
+app.post('/empdelete',(req,res)=>{
+    var item = req.body.ename;
+
+    request(APIurl3+"/?ename="+item,(error,response,body)=>{
+        //res.render("viewemployee","<script>alert('Employee Deleted')</script>");
+        res.send("<script>alert('Employee Deleted')</script>");
+    })
+});
+
+// Setting the PORT or assigning a free PORT towards nodemon
+
 app.listen(process.env.PORT || 3456,()=>{
     console.log("Server running on port::3456...");
 });  //we can assign any number.3000 is commonly used.
