@@ -71,6 +71,39 @@ app.get('/viewemployee',(req,res)=>{
     });
 });
 
+app.get('/searchemployee',(req,res)=>{
+    res.render('searchemployee');
+});
+
+app.get('/employeename',(req,res)=>{
+    var item = req.query.ename;
+    //console.log(item);
+    var result = EmployeeModel.find({ename:item},(error,data)=>{
+        if(error)
+        {
+            throw error;
+            res.send(error);
+        }
+        else
+        {
+            res.send(data);
+        }
+    })
+
+});
+
+const APIurl2 = "http://localhost:3456/employeename";
+
+app.post('/viewsingleemployee',(req,res)=>{
+
+    var item = req.body.ename;
+
+    request(APIurl2+"/?ename="+item,(error,response,body)=>{
+        var data = JSON.parse(body);
+        res.render('viewsingle',{data:data});
+    })
+});
+
 app.listen(process.env.PORT || 3456,()=>{
     console.log("Server running on port::3456...");
 });  //we can assign any number.3000 is commonly used.

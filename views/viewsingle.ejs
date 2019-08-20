@@ -23,6 +23,31 @@
         </ul>
     </nav>
 
-   
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col col-lg-6">
+                
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0;i<data.length;i++){ %>
+                                <tr>
+                                    <td><%= data[i].ename %></td>
+                                    <td><%= data[i].edesign %></td>
+                                    <td><%= data[i].esalary %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admission</title>
+    <title>Employee</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -15,7 +15,7 @@
                 <a class="nav-link" href="/addemployee">Add Employee</a>
             </li>
             <li class="nav-item active">
-            <a class="nav-link" href="/viewemployee">View Employee</a>
+                <a class="nav-link" href="/viewemployee">View Employee</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/searchemployee">Search Employee</a>
@@ -23,15 +23,17 @@
         </ul>
     </nav>
 
-    <div class="card-columns p-5">
-        <% for(var i=0;i<data.length;i++){ %>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= data[i].ename %></h5>
-                        <p class="card-text"><strong>Designation: </strong><%= data[i].edesign%><br><strong>Salary: </strong><%= data[i].esalary %></p>
-                    </div>
-                </div>
-        <% } %>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col col-lg-6">
+                <form action="/viewsingleemployee" method="POST">
+                    <table class="table">
+                        <tr><td>Name:</td><td><input type="text" name="ename" class="form-control" id=""></td></tr>
+                        <tr><td></td><td><input type="submit" class="btn btn-primary" value="Search"></td></tr>
+                    </table>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
