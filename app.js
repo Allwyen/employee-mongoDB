@@ -77,6 +77,9 @@ app.get('/searchemployee',(req,res)=>{
 
 app.get('/employeename',(req,res)=>{
     var item = req.query.ename;
+    //app.get('/emplyee/:id)
+    //item=req.params.id;
+    //var item = req.body.ename;
     //console.log(item);
     var result = EmployeeModel.find({ename:item},(error,data)=>{
         if(error)
