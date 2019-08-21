@@ -91,7 +91,7 @@ app.get('/employeeall',(req,res)=>{
     5) --> Now this parsed JSON data is displayed on to our webpage.
 */
 
-const APIurl = "http://localhost:3456/employeeall";
+const APIurl = "http://employeecrud-allwyen.herokuapp.com/employeeall";
 
 app.get('/viewemployee',(req,res)=>{
 
@@ -139,7 +139,7 @@ app.get('/employeename',(req,res)=>{
     5) --> Now this parsed JSON data is displayed on to our webpage.
 */
 
-const APIurl2 = "http://localhost:3456/employeename";
+const APIurl2 = "http://employeecrud-allwyen.herokuapp.com/employeename";
 
 app.post('/viewsingleemployee',(req,res)=>{
 
@@ -185,7 +185,7 @@ app.get('/deleteAPI',(req,res)=>{
     5) --> Now this parsed JSON data is displayed on to our webpage.
 */
 
-const APIurl3 = "http://localhost:3456/deleteAPI"
+const APIurl3 = "http://employeecrud-allwyen.herokuapp.com/deleteAPI"
 
 app.post('/empdelete',(req,res)=>{
     var item = req.body.ename;
